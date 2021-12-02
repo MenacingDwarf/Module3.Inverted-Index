@@ -58,10 +58,19 @@ class Indexing:
         for url in report_urls[:10]:  # Пока только 10 :)
             self.parse_url(url)
 
+    # Return list of URLs that contain specified word 
+    def find_by_word(self, word):
+        urls = []
+        clear_word = clear_text(word)[0]
+        if clear_word in self.indexing_words:
+            for index in self.indexing_words[clear_word]:
+                urls.append(self.urls_ids[index])
+        return urls
+
 
 if __name__ == '__main__':
     indexing = Indexing()
-    indexing.add_to_index('spbu_report.txt')
+    indexing.add_to_index('reports/slurp.report')
     print(indexing.urls_ids)
     print(indexing.indexing_words)
-
+    print(indexing.find_by_word("рамен"))

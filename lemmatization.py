@@ -17,7 +17,7 @@ def clear_text(x):
     x = re.sub(r'\w*\d+\w*', '', x)  # Remove numbers
     x = re.sub(r'\s{2,}', ' ', x)  # Replace the over spaces
     x = [word for word in filter(r.match, x.split())]  # Russian symbols
-    x = [word for word in x if len(word) > 4]  # Remove short words
+    x = [word for word in x if len(word) >= 4]  # Remove short words
     x = [morph.normal_forms(word)[0] for word in x]  # Normalization words
     x = [word for word in x if word not in stop_words]  # Remove stop words
     return x

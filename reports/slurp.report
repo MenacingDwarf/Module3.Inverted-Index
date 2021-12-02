@@ -1,0 +1,32 @@
+
+--------- CRAWLER REPORT --------
+
+Total visited urls: 9
+Total unique internal urls: 5
+Total unique external urls: 4
+Total external urls: 26
+Total unique document urls: 0
+Valid internals: 4
+Invalid internals: 1
+Total subdomains: 0
+--------- INTERNAL URLS ---------
+
+    OK    https://ramenslurp.ru/
+    OK    https://ramenslurp.ru/menu
+    OK    https://ramenslurp.ru/contacts
+    OK    https://ramenslurp.ru/delivery
+NOT OK    https://ramenslurp.ru/drinks
+    OK    https://ramenslurp.ru/calorii
+
+--------- EXTERNAL URLS ---------
+
+          https://facebook.com/ramenslurp/
+          https://instagram.com/ramenslurp/
+          https://tilda.cc/?upm=741082
+          https://eda.yandex/restaurant/slurp
+
+--------- DOCUMENT URLS ---------
+
+
+---------- SUBDOMAINS -----------
+
