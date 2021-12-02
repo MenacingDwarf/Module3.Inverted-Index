@@ -1,9 +1,14 @@
 from lemmatization import clear_text
 from collections import Counter
 from html_parser import get_text_url, info_extract
+import pymongo
 
 class Indexing:
     def __init__(self):
+        self.urls_ids = {}
+        self.indexing_words = {}
+
+    def clear_index(self):
         self.urls_ids = {}
         self.indexing_words = {}
 
@@ -58,7 +63,7 @@ class Indexing:
         for url in report_urls[:10]:  # Пока только 10 :)
             self.parse_url(url)
 
-    # Return list of URLs that contain specified word 
+    # Return list of URLs that contain specified word
     def find_by_word(self, word):
         urls = []
         clear_word = clear_text(word)[0]
@@ -67,6 +72,39 @@ class Indexing:
                 urls.append(self.urls_ids[index])
         return urls
 
+class MongoIndexing(Indexing):
+    def __init__(self):
+        db_client = pymongo.MongoClient("mongodb://localhost:27017/")
+        current_db = db_client["indexing"]
+        self.urls_ids_collection = current_db["urls_ids"]
+        self.indexing_words_collection = current_db["indexing_words"]
+
+    def clear_index(self):
+        self.urls_ids_collection.delete_many({})
+        self.indexing_words_collection.delete_many({})
+
+    def get_url_id(self, url):
+        if self.urls_ids_collection.count_documents({}) == 0:
+            new_id = 0
+        else:
+            max_id = self.urls_ids_collection.find_one(sort=[("index", -1)])['index']
+            new_id = max_id + 1
+        self.urls_ids_collection.insert_one({'index': new_id, 'url': url})
+        return new_id
+
+    def add_word(self, word, url_id):
+        if self.indexing_words_collection.count_documents({'word': word}) != 0:
+            self.indexing_words_collection.update_one({'word': word}, {'$push': {'urls': url_id}})
+        else:
+            self.indexing_words_collection.insert_one({'word': word, 'urls': [url_id]})
+
+    def find_by_word(self, word):
+        urls = []
+        clear_word = clear_text(word)[0]
+        if self.indexing_words_collection.count_documents({'word': clear_word}) != 0:
+            for index in self.indexing_words_collection.find_one({'word': clear_word})['urls']:
+                urls.append(self.urls_ids_collection.find_one({'index': index})['url'])
+        return urls
 
 if __name__ == '__main__':
     indexing = Indexing()
