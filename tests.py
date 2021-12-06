@@ -1,39 +1,49 @@
 import unittest
-from WebCrawler import WebCrawler
+from Indexing import Indexing
 
 class BaseCrawlerTestCase(unittest.TestCase):
-    url = ""
-    total_num = 1
-    internal_num = 1
-    external_num = 0
+    report_files = ""
+    words = {}
 
     @classmethod
     def setUpClass(cls):
-        print(f'Running Test Case: {cls.__name__}...')
-        cls.crawler = WebCrawler(cls.url)
-        cls.crawler.run(debug=False, log=False)
+        print(f'\n\nRunning Test Case: {cls.__name__}...')
+        cls.indexing = Indexing()
+        for report in cls.report_files:
+            cls.indexing.add_to_index(report)
 
-    def testValidTotalNum(self):
-        self.assertEqual(len(self.crawler.full_urls), self.total_num)
+    def testWord(self, word_index=0, skip=True):
+        if skip:
+            self.skipTest("Internal method")
 
-    def testValidInternalsNum(self):
-        self.assertEqual(len(self.crawler.get_internal_urls()), self.internal_num)
+        word = list(self.words.keys())[word_index]
+        print(f'\n----Testing word: {word}...')
+        self.assertListEqual(self.indexing.find_by_word(word), self.words[word])
 
-    def testValidExternalsNum(self):
-        self.assertEqual(len(self.crawler.get_external_urls()), self.external_num)
+    def testWord1(self):
+        self.testWord(0, False)
 
-class TestPortfolioWebsite(BaseCrawlerTestCase):
-    url = "https://ascotbailey2.carbonmade.com/"
-    total_num = 22
-    internal_num = 9
-    external_num = 13
+    def testWord2(self):
+        self.testWord(1, False)
 
+    def testWord3(self):
+        self.testWord(2, False)
 
 class TestSlurpWebsite(BaseCrawlerTestCase):
-    url = "https://ramenslurp.ru/"
-    total_num = 9
-    internal_num = 5
-    external_num = 4
+    report_files = ["reports/slurp.report"]
+    words = {
+        'лапша': ['https://ramenslurp.ru/', 'https://ramenslurp.ru/menu'],
+        'сервис': ['https://ramenslurp.ru/contacts', 'https://ramenslurp.ru/delivery'],
+        'блюдо': ['https://ramenslurp.ru/', 'https://ramenslurp.ru/delivery']
+    }
+
+class TestBurgers(BaseCrawlerTestCase):
+    report_files = ["reports/bureau.report", "reports/citygrills.report"]
+    words = {
+        'бургер': ['https://barbureau.ru/', 'https://barbureau.ru/photochki', 'https://barbureau.ru/menu_photo', 'https://citygrillexpress.ru/'],
+        'франшиза': ['https://citygrillexpress.ru/', 'https://citygrillexpress.ru/contacts', 'https://citygrillexpress.ru/payment', 'https://citygrillexpress.ru/agreements'],
+        'блюдо': []
+    }
 
 def get_list_of_tests():
     return list(BaseCrawlerTestCase.__subclasses__())

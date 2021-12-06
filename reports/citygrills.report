@@ -1,0 +1,33 @@
+
+--------- CRAWLER REPORT --------
+
+Total visited urls: 10
+Total unique internal urls: 5
+Total unique external urls: 5
+Total external urls: 38
+Total unique document urls: 0
+Valid internals: 4
+Invalid internals: 1
+Total subdomains: 0
+--------- INTERNAL URLS ---------
+
+    OK    https://citygrillexpress.ru/
+    OK    https://citygrillexpress.ru/contacts
+    OK    https://citygrillexpress.ru/payment
+    OK    https://citygrillexpress.ru/agreements
+    OK    https://citygrillexpress.ru/personal_information
+NOT OK    https://citygrillexpress.ru/delivery
+
+--------- EXTERNAL URLS ---------
+
+          https://drive.google.com/file/d/1zRLl2IfP4PwML4uk_m0E6rrVffOybKGR/
+          https://drive.google.com/file/d/18VsQ1Jkwcpp5KLJnv2p0v0Y6DTL4Snh_/
+          https://vk.com/citygrillexpress
+          https://instagram.com/citygrillexpress/
+          https://e.mail.ru/compose/?mailto=mailto%3Aomerteg@gmail.com
+
+--------- DOCUMENT URLS ---------
+
+
+---------- SUBDOMAINS -----------
+

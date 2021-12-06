@@ -1,0 +1,35 @@
+
+--------- CRAWLER REPORT --------
+
+Total visited urls: 13
+Total unique internal urls: 5
+Total unique external urls: 8
+Total external urls: 11
+Total unique document urls: 0
+Valid internals: 5
+Invalid internals: 0
+Total subdomains: 0
+--------- INTERNAL URLS ---------
+
+    OK    https://barbureau.ru/
+    OK    https://barbureau.ru/menushka
+    OK    https://barbureau.ru/photochki
+    OK    https://barbureau.ru/docs
+    OK    https://barbureau.ru/barnaya_menushka
+    OK    https://barbureau.ru/menu_photo
+
+--------- EXTERNAL URLS ---------
+
+          https://78.media.tumblr.com/28df3a8ebc84333e7f173c48adea4a03/tumblr_nlpvlwEIWD1s1n35vo1_500.gif
+          https://facebook.com/barbureau/?ref=br_rs
+          https://vk.com/bureaubar
+          https://instagram.com/bureauburgers/
+          https://buro-team.ru/
+          https://vk.com/valerismfoto
+          https://barbureau.tilda.ws/
+          https://docviewer.yandex.ru/view/225127722/?page=1&*=PfGD%2BF9ZLBp%2Bqwtg6h8WAt9Yf1l7InVybCI6InlhLWRpc2stcHVibGljOi8vc0dVMm9wT1VFTXZWRzcwTnhueUxWakhRbFpuNjZ5YVRHOUJnOWRuYkVjUTA2R3h6eVBqME9tWTlRVW9JelJiK3EvSjZicG1SeU9Kb25UM1ZvWG5EYWc9PSIsInRpdGxlIjoi0JrQsNC70L7RgNC40LnQvdC%2B0YHRgtGMINCR0K7QoNCeLnhscyIsIm5vaWZyYW1lIjpmYWxzZSwidWlkIjoiMjI1MTI3NzIyIiwidHMiOjE2MDQ3NjI3NjY1ODgsInl1IjoiMjM4ODk0NTI1MTYwMTIxNzkzNyJ9
+
+--------- DOCUMENT URLS ---------
+
+
+---------- SUBDOMAINS -----------

@@ -91,8 +91,9 @@ class Indexing:
 if __name__ == '__main__':
     indexing = Indexing()
     indexing.clear_index()
-    indexing.add_to_index('reports/slurp.report')
-    print(indexing.urls_ids)
-    print(indexing.indexing_words)
-    print(indexing.indexing_words_elias)
-    print(indexing.find_by_word("рамен"))
+    indexing.add_to_index('reports/citygrills.report')
+    print(indexing.find_by_word("франшиза"))
+
+    indexing.clear_index()
+    indexing.add_to_index('reports/bureau.report')
+    print(indexing.find_by_word("франшиза"))
