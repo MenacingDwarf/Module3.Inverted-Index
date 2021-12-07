@@ -76,7 +76,7 @@ class Indexing_psql:
             cur.execute("INSERT INTO inv_ind_el VALUES (%s, %s);", [word, el_id])
         else:
             ind_word.append(url_id)
-            new_el_id = str(bytes(ind_el_word))[2:-1] + el_id
+            new_el_id = ind_el_word + el_id
             cur.execute("UPDATE inv_ind SET postlist = %s WHERE word = %s;", [ind_word, word])
             cur.execute("UPDATE inv_ind_el SET postlist = %s WHERE word = %s;", [new_el_id, word])
         self.conn.commit()
@@ -106,7 +106,7 @@ class Indexing_psql:
     # Parse all urls from report file and add to index
     def add_to_index(self, report_path):
         report_urls = self.parse_report(report_path)
-        for url in report_urls[:10]:  # Пока только 10 :)
+        for url in report_urls[0:10]:  # Пока только 10 :)
             self.parse_url(url)
 
     # Return list of URLs that contain specified word
@@ -141,8 +141,11 @@ class Indexing_psql:
 if __name__ == '__main__':
     indexing = Indexing_psql()
     #indexing.clear_index()
-    #indexing.add_to_index('reports/citygrills.report')
-    print(indexing.find_query("курица баранина"))
+    indexing.add_to_index('reports/spbu_report.txt')
+    #print(indexing.find_query("ректор спбгу"))
+    #ind_word, el_ind = indexing.get_ind('ректор')
+    #print(bytes(el_ind))
+    #print(ind_word)
 
 
 
