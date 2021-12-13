@@ -141,11 +141,7 @@ class Indexing_psql:
 if __name__ == '__main__':
     indexing = Indexing_psql()
     #indexing.clear_index()
-    indexing.add_to_index('reports/spbu_report.txt')
-    #print(indexing.find_query("ректор спбгу"))
+    print(indexing.find_query("ректор спбгу"))
     #ind_word, el_ind = indexing.get_ind('ректор')
     #print(bytes(el_ind))
     #print(ind_word)
-
-
-
